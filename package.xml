@@ -1,0 +1,12 @@
+<package format="2">
+  <name>IR_Session2_E2_1</name>
+  <version>1.2.4</version>
+  <description>Integracio Robotica - Sessio 2  </description>
+  <maintainer email="bet@uvic.cat">Bet</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+
+
+</package>
