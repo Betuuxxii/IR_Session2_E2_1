@@ -2,17 +2,22 @@
 
 <arg name="aditional_info" default="true"/>
 
-<arg name="model" default="$(find IR_Session2_E2_1)/urdf/IR_2.urdf"/>
-<arg name="gui" default="true" />
-<arg name="rvizconfig" default="$(find IR_Session2_E2_1)/rviz/urdf.rviz" />
+  <arg name="model" />
+  <param name="robot_description" textfile="$(find IR_Session2_E2_1)/urdf/IR_2.urdf" />
+  <param name="use_gui" value="true"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find IR_Session2_E2_1)/rviz/urdf.rviz" required="true" />
 
+<include file="$(find IR_Session2_E2_1)/launch/usb_cam-test.launch"/>
 
 <group if="$(arg additional_info)" ns="materuvic">
   <param name="year" value="2019" />
   <param name="alumna" value="Bet" />
 </group>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+
 
 </launch>
 

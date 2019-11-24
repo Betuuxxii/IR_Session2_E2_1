@@ -1,10 +1,173 @@
 <?xml version="1.0"?>
 <robot name="myfirst">
+
   <link name="base_link">
+  <visual>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.6 0.6 0.2"/>
+    </geometry>
+    <material name="Blue">
+<color rgba="0 0 0.9 1.0"/>
+</material>
+  </visual>
+</link>
+
+<joint name="base_to_support" type="fixed">
+    <parent link="base_link"/>
+    <child link="support_link"/>
+    <origin xyz="0 0 0.3"/>
+  </joint>
+
+  <link name="support_link">
     <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.6" radius="0.2"/>
+        <cylinder length="0.2" radius="0.08"/>
       </geometry>
+      <material name="Blue">
+  <color rgba="0 0 0.9 1.0"/>
+</material>
     </visual>
   </link>
+
+  <joint name="support_to_first_join" type="continuous">
+    <parent link="support_link"/>
+    <child link="first_join"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0 0 0.1"/>
+  </joint>
+
+<!---   FIRST LINK      -->
+
+  <link name="first_join">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.15"/>
+      </geometry>
+      <material name="Yellow">
+				<color rgba="0.8 0.8 0 1.0"/>
+			</material>
+    </visual>
+  </link>
+
+  <joint name="first_join_to_first_link" type="fixed">
+      <parent link="first_join"/>
+      <child link="first_link"/>
+      <origin xyz="0 0 0.075"/>
+    </joint>
+
+    <link name="first_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.8" radius="0.06"/>
+        </geometry>
+        <material name="Blue">
+    <color rgba="0 0 0.9 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+<!---   SECOND LINK      -->
+
+    <joint name="first_link_to_second_join" type="revolute">
+      <axis xyz="0 1 0"/>
+      <limit effort="99999" lower="-2.0" upper="2.0" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0.4"/>
+      <parent link="first_link"/>
+      <child link="second_join"/>
+    </joint>
+
+    <link name="second_join">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.54 0 0" />
+        <geometry>
+          <cylinder length="0.15" radius="0.06"/>
+        </geometry>
+        <material name="Yellow">
+  				<color rgba="0.8 0.8 0 1.0"/>
+  			</material>
+      </visual>
+    </link>
+
+    <joint name="second_join_to_second_link" type="fixed">
+        <parent link="second_join"/>
+        <child link="second_link"/>
+        <origin xyz="0 0 0.06"/>
+      </joint>
+
+    <link name="second_link">
+      <visual>
+        <origin xyz="0 0 0.22" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.5" radius="0.06"/>
+        </geometry>
+        <material name="Blue">
+    <color rgba="0 0 0.9 1.0"/>
+  </material>
+      </visual>
+    </link>
+
+<!---   THIRD LINK      -->
+
+    <joint name="second_link_to_third_join" type="revolute">
+      <axis xyz="0 1 0"/>
+      <limit effort="99999" lower="-1.0" upper="1.0" velocity="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0.5"/>
+      <parent link="second_link"/>
+      <child link="third_join"/>
+    </joint>
+
+    <link name="third_join">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.54 0 0" />
+        <geometry>
+          <cylinder length="0.15" radius="0.06"/>
+        </geometry>
+        <material name="Yellow">
+          <color rgba="0.8 0.8 0 1.0"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="third_join_to_third_link" type="fixed">
+        <parent link="third_join"/>
+        <child link="third_link"/>
+        <origin xyz="0 0 0.06"/>
+      </joint>
+
+    <link name="third_link">
+      <visual>
+        <origin xyz="0 0 0.09" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.3" radius="0.06"/>
+        </geometry>
+        <material name="Blue">
+    <color rgba="0 0 0.9 1.0"/>
+    </material>
+      </visual>
+    </link>
+
+    <!--- END EFFECTOR  -->
+
+    <joint name="third_link_to_end_effector" type="fixed">
+        <parent link="third_link"/>
+        <child link="end_effector"/>
+        <origin xyz="0 0 0.3"/>
+      </joint>
+
+    <link name="end_effector">
+  <visual>
+    <geometry>
+      <sphere radius="0.08"/>
+    </geometry>
+    <material name="Red">
+    	<color rgba="1 0.1 0.0 1"/>
+    </material>
+  </visual>
+</link>
+
+
 </robot>
