@@ -10,7 +10,15 @@
 
 * 5 -> Include the file usb_cam-test.launch from the package usb_cam
 
+* 6 -> What are the arguments of usb_cam-test.launch?
 
+	- video_device
+	- image_width
+	- image_height
+	- pixel_format
+	- camera_frame_id
+	- io_method
+	- autosize
 
 
 
